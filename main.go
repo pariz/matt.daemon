@@ -3,8 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
+	"net"
+	"net/http"
+	"net/rpc"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/pariz/matt.daemon/config"
 	"github.com/pariz/matt.daemon/process"
 )
@@ -30,9 +33,20 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	spew.Dump(cfg)
+
 	// Spawn processes
 	process.Init(cfg)
+
+	// Setup Rpc
+	rpcServer := new(process.Rpc)
+	rpc.Register(rpcServer)
+	rpc.HandleHTTP()
+
+	l, e := net.Listen("tcp", ":1337")
+	if e != nil {
+		log.Fatal("listen error:", e)
+	}
+	go http.Serve(l, nil)
 
 	// Make sure program doesn't terminate
 	for {

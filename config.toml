@@ -4,14 +4,18 @@ logDir="/Users/park/matt.daemon/logs"
 
 [processes]
 
-  [process.Project1]
-  description="A project that dies after 20 seconds"
-  script="/Users/park/matt.daemon/bin/die_after_20_seconds"
+  [process.Die_After_5_Seconds]
+  description="A project that dies after 5 seconds"
+  script="/Users/park/matt.daemon/bin/die_after_5_seconds"
 
-  [process.Project2]
-  description="A project that dies after 15 seconds"
-  script="/Users/park/matt.daemon/bin/die_after_15_seconds"
+  [process.Die_After_10_Seconds]
+  description="A project that dies after 10 seconds"
+  script="/Users/park/matt.daemon/bin/die_after_10_seconds"
 
-  [process.Project3]
-  description="A project that exits after 10 seconds"
-  script="/Users/park/matt.daemon/bin/exit_after_10_seconds"
+  [process.Exit_After_15_Seconds]
+  description="A project that exits after 15 seconds"
+  script="/Users/park/matt.daemon/bin/exit_after_15_seconds"
+
+  [process.I_Shall_Never_Die]
+  description="A project that never dies"
+  script="/Users/park/matt.daemon/bin/i_shall_never_die"
