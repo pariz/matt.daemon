@@ -10,12 +10,6 @@ func (r *Rpc) Kill(processName *string, reply *string) error {
 		err error
 	)
 
-	/*if pid, err = getPidForProcess(*processName); pidRunning(pid) == false {
-
-		return errors.New("The process is not running")
-	}
-	err = killPid(pid)*/
-
 	err = killProcess(*processName)
 
 	if err != nil {
@@ -38,7 +32,7 @@ func (r *Rpc) Start(processName *string, reply *string) error {
 		spawnProcess(*processName, processCfg)
 		*reply = "The process was started"
 	} else {
-		return errors.New("The process does not exists in the configuration")
+		return errors.New("The process does not exists in the process config")
 	}
 
 	return nil

@@ -45,7 +45,6 @@ func killProcess(processName string) error {
 func getPidForProcess(processName string) (pid int, err error) {
 
 	pidFilePath := fmt.Sprintf("%s/%s.pid", cfg.PidDir, processName)
-	fmt.Println("getPidForProcess", pidFilePath)
 	var pidBytes []byte
 
 	if _, err = os.Stat(pidFilePath); os.IsNotExist(err) {
@@ -94,10 +93,6 @@ func createPid(processName string, pid int) (err error) {
 
 func createStdLogFile(processName, stdType string) (file *os.File) {
 
-	//file, _ = os.Create(fmt.Sprintf("%s/%s.stdout.log", cfg.LogDir, processName))
-
-	//return file
-
 	filePath := fmt.Sprintf("%s/%s.%s.log", cfg.LogDir, processName, stdType)
 	var err error
 
@@ -122,8 +117,6 @@ func spawnProcess(processName string, process *config.Process) {
 
 	var (
 		cmd *exec.Cmd
-		//stdOut io.ReadCloser
-
 	)
 
 	cmd = exec.Command(process.Script)
@@ -136,11 +129,8 @@ func spawnProcess(processName string, process *config.Process) {
 	// Log stdout
 	cmd.Stdout = stdoutFile
 	cmd.Stderr = stdErrFile
-	//cmd.Stderr = createStderrLogFile(processName)
 
 	err := cmd.Start()
-
-	//cmd.SysProcAttr.Setpgid = true // Don't spawn child processes
 
 	if err = createPid(processName, cmd.Process.Pid); err != nil {
 		fmt.Printf("Could not create pid, %s, %d. Err: %s", processName, cmd.Process.Pid, err)
