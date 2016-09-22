@@ -1,0 +1,17 @@
+
+pidDir="/Users/park/matt.daemon/pids"
+logDir="/Users/park/matt.daemon/logs"
+
+[processes]
+
+  [process.Project1]
+  description="A project that dies after 20 seconds"
+  script="/Users/park/matt.daemon/bin/die_after_20_seconds"
+
+  [process.Project2]
+  description="A project that dies after 15 seconds"
+  script="/Users/park/matt.daemon/bin/die_after_15_seconds"
+
+  [process.Project3]
+  description="A project that exits after 10 seconds"
+  script="/Users/park/matt.daemon/bin/exit_after_10_seconds"
