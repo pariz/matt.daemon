@@ -19,4 +19,22 @@ as soon as i have cleaned up the code :)
 
 The code is a bit clunky and contains 0 tests because Hackathon.
 
-Cheers!
+Example config file:
+
+```
+
+pidDir="/Users/park/matt.daemon/pids"
+logDir="/Users/park/matt.daemon/logs"
+
+[processes]
+
+  [process.Program1]
+  description="My first program"
+  script="/path/to/bin/program1"
+
+  [process.Program2]
+  description="My second program"
+  script="/path/to/bin/program2"
+  
+
+```
